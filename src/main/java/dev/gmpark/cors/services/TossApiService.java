@@ -3,6 +3,7 @@ package dev.gmpark.cors.services;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.gmpark.cors.exceptions.TossPaymentException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import java.io.InputStream;
@@ -14,7 +15,9 @@ import java.util.Base64;
 
 @Service
 public class TossApiService {
-    private final String SECRET_KEY = "test_sk_yZqmkKeP8gNGqeA05AvprbQRxB9l";
+    // 토스페이먼츠 시크릿 키는 환경 변수 TOSS_SECRET_KEY로 주입 (코드에 직접 쓰지 않음)
+    @Value("${toss.secret-key}")
+    private String SECRET_KEY;
     private final ObjectMapper mapper = new ObjectMapper();
 
     public JsonNode confirmPayment(String paymentKey, String orderId, Long amount) throws Exception {

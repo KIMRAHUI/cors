@@ -95,16 +95,17 @@
 git clone https://github.com/KIMRAHUI/cors.git
 cd cors
 
-# application.properties(또는 .yml)에 DB 접속 정보와 아래 외부 API 키 설정
-#  - Toss Payments 클라이언트 / 시크릿 키
-#  - Kakao JavaScript 키
-#  - SMTP 계정 (이메일 인증)
+# 민감 정보는 환경 변수로 주입합니다 (application.properties는 ${...}로 참조)
+export DB_PASSWORD=<로컬 DB 비밀번호>
+export MAIL_USERNAME=<발송용 Gmail 주소>
+export MAIL_PASSWORD=<Gmail 앱 비밀번호>
+export NAVER_CLIENT_SECRET=<네이버 로그인 Client Secret>
+export TOSS_SECRET_KEY=<토스페이먼츠 시크릿 키>
 
 ./mvnw spring-boot:run
 ```
 
-> API 키와 계정 정보는 저장소에 포함하지 않습니다.
-<!-- TODO: 실제 설정 파일명 / 포트 / DB 스키마 파일 경로 확인 -->
+> API 키와 계정 정보는 저장소에 포함하지 않습니다. 카카오 JavaScript 키와 네이버 Client ID는 브라우저에 공개되는 값이라 설정 파일에 그대로 둡니다.
 
 ---
 
